@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvgqg6s3y13c3"]
+[gd_scene load_steps=3 format=3 uid="uid://cvgqg6s3y13c3"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_wf4x1"]
+[ext_resource type="Script" path="res://CurrentTime.gd" id="2_m1bxy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5l5r6"]
+font_size = 30
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -9,9 +12,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wf4x1")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 400.0
 offset_bottom = 600.0
+
+[node name="CurrentTime" type="Label" parent="Panel"]
+top_level = true
+layout_mode = 0
+offset_left = 75.0
+offset_top = 125.0
+offset_right = 331.0
+offset_bottom = 192.0
+label_settings = SubResource("LabelSettings_5l5r6")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_m1bxy")
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 85.9
+offset_top = 119.515
+offset_right = 317.9
+offset_bottom = 200.515
