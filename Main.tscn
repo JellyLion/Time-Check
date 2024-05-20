@@ -4,17 +4,17 @@
 
 [sub_resource type="Theme" id="Theme_vm6yq"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_5l5r6"]
-font_size = 30
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vw2tk"]
 bg_color = Color(0.111197, 0.111197, 0.111197, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uk3a"]
-bg_color = Color(0.140447, 0.140447, 0.140447, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_hnw34"]
 font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uk3a"]
+bg_color = Color(0.230315, 0.230315, 0.230315, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5l5r6"]
+font_size = 30
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -25,43 +25,70 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 400.0
-offset_bottom = 600.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.971
+offset_bottom = 16.124
 theme = SubResource("Theme_vm6yq")
 
-[node name="CurrentTime" type="Label" parent="Background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TitlePanel" type="Panel" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.35
+theme_override_styles/panel = SubResource("StyleBoxFlat_vw2tk")
+
+[node name="Title" type="Label" parent="Background/VBoxContainer/TitlePanel"]
+top_level = true
+layout_mode = 2
+offset_right = 900.0
+offset_bottom = 60.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Time Checker"
+label_settings = SubResource("LabelSettings_hnw34")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.75
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TimeAndDatePanel" type="Panel" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.45
+theme_override_styles/panel = SubResource("StyleBoxFlat_1uk3a")
+
+[node name="CurrentTime" type="Label" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeAndDatePanel"]
 top_level = true
 layout_mode = 0
-offset_left = 75.0
-offset_top = 56.0
-offset_right = 331.0
-offset_bottom = 123.0
+offset_top = 60.0
+offset_right = 900.0
+offset_bottom = 117.0
 label_settings = SubResource("LabelSettings_5l5r6")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_m1bxy")
 
-[node name="TitlePanel" type="Panel" parent="Background"]
-layout_mode = 0
-offset_right = 400.0
-offset_bottom = 53.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_vw2tk")
-
-[node name="TitlePanel2" type="Panel" parent="Background"]
-layout_mode = 0
-offset_top = 53.0
-offset_right = 400.0
-offset_bottom = 126.65
-theme_override_styles/panel = SubResource("StyleBoxFlat_1uk3a")
-
-[node name="Title" type="Label" parent="Background"]
-top_level = true
+[node name="Control" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-offset_left = 15.0
-offset_top = 4.0
-offset_right = 212.0
-offset_bottom = 55.0
-text = "Time Checker"
-label_settings = SubResource("LabelSettings_hnw34")
-vertical_alignment = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.43
