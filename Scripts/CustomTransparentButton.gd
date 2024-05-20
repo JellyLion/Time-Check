@@ -1,6 +1,8 @@
 extends TextureButton
 #
-#
+func _on_mouse_entered():
+	print ("on mouse entered")
+
 #func _ready() -> void:
 	#connect("mouse_entered", self, "mouse_entered")
 	#connect("mouse_exited", self, "mouse_exited")
