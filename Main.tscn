@@ -1,11 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvgqg6s3y13c3"]
+[gd_scene load_steps=15 format=3 uid="uid://cvgqg6s3y13c3"]
 
 [ext_resource type="Texture2D" uid="uid://lbev18qh7qdj" path="res://Buttons/AppBar/MinimizeBtn.png" id="1_6ihf3"]
+[ext_resource type="Script" path="res://Main.gd" id="1_cmgu4"]
 [ext_resource type="Script" path="res://AppBarButtons.gd" id="1_yyigs"]
 [ext_resource type="Script" path="res://Scripts/CurrentTime.gd" id="2_m1bxy"]
 [ext_resource type="Texture2D" uid="uid://c10kndmtmglbv" path="res://Buttons/AppBar/MaximizeBtn.png" id="2_mgum6"]
 [ext_resource type="Script" path="res://Scripts/CustomTransparentButton.gd" id="2_vrfww"]
 [ext_resource type="Texture2D" uid="uid://dquglo7dwb3ov" path="res://Buttons/AppBar/ExitBtn.png" id="3_gybec"]
+[ext_resource type="PackedScene" uid="uid://cygyfbsh2bfov" path="res://Scenes/time_check_popup.tscn" id="8_cdset"]
+[ext_resource type="Script" path="res://Scenes/time_check_popup.gd" id="9_0en45"]
 
 [sub_resource type="Theme" id="Theme_vm6yq"]
 
@@ -29,6 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cmgu4")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -132,6 +136,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.43
 
+[node name="TimeCheckPopup" parent="." instance=ExtResource("8_cdset")]
+visible = false
+script = ExtResource("9_0en45")
+
+[connection signal="on_timeout" from="." to="TimeCheckPopup" method="show_popup"]
 [connection signal="pressed" from="Background/VBoxContainer/TitlePanel/AppBarButtons/Minimize" to="Background/VBoxContainer/TitlePanel/AppBarButtons" method="_on_minimize_pressed"]
 [connection signal="pressed" from="Background/VBoxContainer/TitlePanel/AppBarButtons/Maximize" to="Background/VBoxContainer/TitlePanel/AppBarButtons" method="_on_maximize_pressed"]
 [connection signal="pressed" from="Background/VBoxContainer/TitlePanel/AppBarButtons/Close" to="Background/VBoxContainer/TitlePanel/AppBarButtons" method="_on_close_pressed"]
