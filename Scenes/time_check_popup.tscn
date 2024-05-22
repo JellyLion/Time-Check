@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cygyfbsh2bfov"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itvq2"]
-bg_color = Color(0.383474, 0.640588, 0.745844, 1)
-
-[node name="TimeCheckPopup" type="PopupPanel"]
-visible = true
-theme_override_styles/panel = SubResource("StyleBoxFlat_itvq2")
