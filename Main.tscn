@@ -205,7 +205,6 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 12.48
 
 [node name="TimeCheckerNotification" parent="." instance=ExtResource("10_olkbf")]
-visible = false
 borderless = true
 
 [connection signal="call_time_checker_notification" from="." to="TimeCheckerNotification" method="_on_main_call_time_checker_notification"]
@@ -215,3 +214,7 @@ borderless = true
 [connection signal="minute_changed" from="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeAndDatePanel/CurrentTime" to="." method="_on_current_time_minute_changed"]
 [connection signal="value_changed" from="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeToCallNotification/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="toggled" from="Background/VBoxContainer/HBoxContainer/VBoxContainer/StartOnCurrentTime/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="text_changed" from="TimeCheckerNotification/HBoxContainer/VBoxContainer/WhatAmIDoingNote/LineEdit" to="TimeCheckerNotification" method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="TimeCheckerNotification/HBoxContainer/VBoxContainer/WhatAmIDoingNote/LineEdit" to="TimeCheckerNotification" method="_on_line_edit_text_submitted"]
+
+[editable path="TimeCheckerNotification"]
