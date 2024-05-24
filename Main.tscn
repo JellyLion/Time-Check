@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvgqg6s3y13c3"]
+[gd_scene load_steps=15 format=3 uid="uid://cvgqg6s3y13c3"]
 
 [ext_resource type="Texture2D" uid="uid://lbev18qh7qdj" path="res://Buttons/AppBar/MinimizeBtn.png" id="1_6ihf3"]
+[ext_resource type="Script" path="res://Main.gd" id="1_ka2lc"]
 [ext_resource type="Script" path="res://Scripts/AppBarButtons.gd" id="1_yyigs"]
 [ext_resource type="Script" path="res://Scripts/CurrentTime.gd" id="2_m1bxy"]
 [ext_resource type="Texture2D" uid="uid://c10kndmtmglbv" path="res://Buttons/AppBar/MaximizeBtn.png" id="2_mgum6"]
@@ -23,6 +24,9 @@ bg_color = Color(0.230315, 0.230315, 0.230315, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_5l5r6"]
 font_size = 30
 
+[sub_resource type="LabelSettings" id="LabelSettings_x7cr8"]
+font_size = 18
+
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -30,6 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ka2lc")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -104,41 +109,109 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.75
 theme_override_constants/separation = 0
 
+[node name="Panel" type="Panel" parent="Background/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
 [node name="TimeAndDatePanel" type="Panel" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.45
+size_flags_stretch_ratio = 2.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1uk3a")
 
 [node name="CurrentTime" type="Label" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeAndDatePanel"]
 top_level = true
 layout_mode = 0
-offset_top = 60.0
+offset_left = 42.0
+offset_top = 62.0
 offset_right = 900.0
-offset_bottom = 117.0
+offset_bottom = 121.0
 label_settings = SubResource("LabelSettings_5l5r6")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_m1bxy")
-minutes_to_call_notification = 2
 
-[node name="Control" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="TimeToCallNotification" type="HBoxContainer" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.84
+
+[node name="Control" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeToCallNotification"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeToCallNotification"]
+layout_mode = 2
+text = "Time to call checker notification:"
+label_settings = SubResource("LabelSettings_x7cr8")
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeToCallNotification"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="SpinBox" type="SpinBox" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeToCallNotification"]
+layout_mode = 2
+min_value = 1.0
+max_value = 60.0
+value = 1.0
+update_on_text_changed = true
+custom_arrow_step = 1.0
+
+[node name="Control2" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeToCallNotification"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 12.41
+
+[node name="StartOnCurrentTime" type="HBoxContainer" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.84
+
+[node name="Control" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/StartOnCurrentTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/StartOnCurrentTime"]
+layout_mode = 2
+text = "Start at current time:"
+label_settings = SubResource("LabelSettings_x7cr8")
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/StartOnCurrentTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="CheckButton" type="CheckButton" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/StartOnCurrentTime"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer/StartOnCurrentTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 15.38
+
+[node name="Control2" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.43
+size_flags_stretch_ratio = 12.48
 
 [node name="TimeCheckerNotification" parent="." instance=ExtResource("10_olkbf")]
 visible = false
 borderless = true
 
+[connection signal="call_time_checker_notification" from="." to="TimeCheckerNotification" method="_on_main_call_time_checker_notification"]
 [connection signal="pressed" from="Background/VBoxContainer/TitlePanel/AppBarButtons/Minimize" to="Background/VBoxContainer/TitlePanel/AppBarButtons" method="_on_minimize_pressed"]
 [connection signal="pressed" from="Background/VBoxContainer/TitlePanel/AppBarButtons/Maximize" to="Background/VBoxContainer/TitlePanel/AppBarButtons" method="_on_maximize_pressed"]
 [connection signal="pressed" from="Background/VBoxContainer/TitlePanel/AppBarButtons/Close" to="Background/VBoxContainer/TitlePanel/AppBarButtons" method="_on_close_pressed"]
-[connection signal="call_time_checker_notification" from="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeAndDatePanel/CurrentTime" to="TimeCheckerNotification" method="_on_time_checker_notification_called"]
+[connection signal="minute_changed" from="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeAndDatePanel/CurrentTime" to="." method="_on_current_time_minute_changed"]
+[connection signal="value_changed" from="Background/VBoxContainer/HBoxContainer/VBoxContainer/TimeToCallNotification/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="toggled" from="Background/VBoxContainer/HBoxContainer/VBoxContainer/StartOnCurrentTime/CheckButton" to="." method="_on_check_button_toggled"]
