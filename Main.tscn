@@ -126,6 +126,7 @@ label_settings = SubResource("LabelSettings_5l5r6")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_m1bxy")
+minutes_to_call_notification = 2
 
 [node name="Control" type="Control" parent="Background/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -134,7 +135,6 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.43
 
 [node name="TimeCheckerNotification" parent="." instance=ExtResource("10_olkbf")]
-initial_position = 0
 visible = false
 borderless = true
 

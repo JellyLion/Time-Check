@@ -1,6 +1,6 @@
 extends Label
 
-var minutes_to_call_notification:int = 1
+@export var minutes_to_call_notification := 1
 var current_time:String
 var current_minute: int
 var last_minute: int
@@ -15,8 +15,7 @@ func _process(delta):
 	current_time = Time.get_time_string_from_system(false)
 	text = current_time
 	#current time string is formated like this: HH:MM:SS
-	var get_minutes = PackedStringArray([current_time[3],current_time[4]])
-	current_minute = int("".join(get_minutes))
+	current_minute = int(text.get_slice(":", 1))
 	#we will need to operate on hours to, so instead of ending at 59, the minutes
 	#should end at 60 and start at 1
 	if current_minute == 0:
