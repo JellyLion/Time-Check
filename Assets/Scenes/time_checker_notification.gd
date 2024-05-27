@@ -9,7 +9,6 @@ var current_text : String
 func _on_main_call_time_checker_notification():
 	current_hour_minute = Time.get_time_string_from_system(false)
 	current_hour_minute = current_hour_minute.erase(5,3)
-	print(current_hour_minute)
 	var current_time_text = "It's " + current_hour_minute + "!"
 	$HBoxContainer/VBoxContainer/CurrentTimeHContainer/CurrentTimeLabel.text = current_time_text
 	show()
@@ -27,12 +26,14 @@ func _on_line_edit_text_submitted(new_text):
 	var timeCheckerRes : TimeCheckerResource = TimeCheckerResource.new()
 	timeCheckerRes.HHMM = current_hour_minute
 	timeCheckerRes.text = new_text
-	print(new_text)
-	#save timeCheck and reset note
 	Configuration.saveTimeCheck(timeCheckerRes)
 	notification_is_being_used = false
+	ResetNotificationWindow()
 	hide()
 
 func _on_button_pressed():
 	if notification_is_being_used:
 		_on_line_edit_text_submitted(current_text)
+
+func ResetNotificationWindow():
+	$HBoxContainer/VBoxContainer/WhatAmIDoingNote/LineEdit.text = ""

@@ -7,6 +7,9 @@ var minutes_past_starting_minute : int
 
 signal call_time_checker_notification
 
+func _ready():
+	Configuration.onApplicationStart()
+
 func _on_current_time_minute_changed(minute):
 	current_minute = minute
 	if not start_at_current_time:
