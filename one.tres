@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TimeCheckerResource" load_steps=2 format=3 uid="uid://olbi3b1yk02t"]
+
+[ext_resource type="Script" path="res://Assets/Resources/TimeCheckerResource.gd" id="1_41l4f"]
+
+[resource]
+script = ExtResource("1_41l4f")
+HHMM = "09:58"
+text = "cacacando"
