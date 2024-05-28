@@ -18,3 +18,12 @@ static func onApplicationStart():
 	else:
 		print("Creating checks directory")
 		DirAccess.make_dir_absolute(TIME_CHECKS_PATH)
+	loadStoredChecks()
+
+static func loadStoredChecks():
+	var filesArray := DirAccess.get_files_at(TIME_CHECKS_PATH)
+	for file in filesArray:
+		print(file.get_file())
+		var fileData : TimeCheckerResource = load(TIME_CHECKS_PATH + file.get_file())
+		#print(fileData.get_hhmm)
+

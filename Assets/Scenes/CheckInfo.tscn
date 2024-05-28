@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cltsgmgtpo724"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0slxt"]
+bg_color = Color(0.180005, 0.180005, 0.180005, 1)
+
+[node name="CheckInfo" type="PanelContainer"]
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0slxt")
+
+[node name="Day and hour" type="Label" parent="."]
+layout_mode = 2
+
+[node name="CheckNote" type="Label" parent="."]
+layout_mode = 2

@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkn0ypwnou2f7"]
+
+[ext_resource type="Script" path="res://Scripts/CurrentTime.gd" id="1_hgiim"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uk3a"]
+bg_color = Color(0.230315, 0.230315, 0.230315, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5l5r6"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7cr8"]
+font_size = 18
+
+[node name="DefaultSpace" type="VBoxContainer"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="TimeAndDatePanel" type="Panel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1uk3a")
+
+[node name="CurrentTime" type="Label" parent="TimeAndDatePanel"]
+top_level = true
+layout_mode = 0
+offset_left = 42.0
+offset_top = 62.0
+offset_right = 900.0
+offset_bottom = 121.0
+label_settings = SubResource("LabelSettings_5l5r6")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_hgiim")
+
+[node name="TimeToCallNotification" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.84
+
+[node name="Control" type="Control" parent="TimeToCallNotification"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TimeToCallNotification"]
+layout_mode = 2
+text = "Time to call checker notification:"
+label_settings = SubResource("LabelSettings_x7cr8")
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="TimeToCallNotification"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="SpinBox" type="SpinBox" parent="TimeToCallNotification"]
+layout_mode = 2
+min_value = 1.0
+max_value = 60.0
+value = 1.0
+update_on_text_changed = true
+custom_arrow_step = 1.0
+
+[node name="Control2" type="Control" parent="TimeToCallNotification"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 12.41
+
+[node name="StartOnCurrentTime" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.84
+
+[node name="Control" type="Control" parent="StartOnCurrentTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="StartOnCurrentTime"]
+layout_mode = 2
+text = "Start at current time:"
+label_settings = SubResource("LabelSettings_x7cr8")
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="StartOnCurrentTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="CheckButton" type="CheckButton" parent="StartOnCurrentTime"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="StartOnCurrentTime"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 15.38
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.48
