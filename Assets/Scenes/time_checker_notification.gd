@@ -26,7 +26,8 @@ func _on_line_edit_text_submitted(new_text):
 	var timeCheckerRes : TimeCheckerResource = TimeCheckerResource.new()
 	timeCheckerRes.HHMM = current_hour_minute
 	timeCheckerRes.text = new_text
-	Configuration.saveTimeCheck(timeCheckerRes)
+	
+	$Configuration.saveTimeCheckAsScene(timeCheckerRes)
 	notification_is_being_used = false
 	ResetNotificationWindow()
 	hide()
