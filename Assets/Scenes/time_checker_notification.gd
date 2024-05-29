@@ -4,6 +4,9 @@ var can_close_window:bool = false
 var notification_is_being_used := false
 var current_hour_minute : String
 var current_text : String
+var defaultCheckInfo := preload("res://Assets/Scenes/CheckInfo.tscn")
+
+const TIME_CHECKS_PATH := "user://TimeChecks/"
 
 #when calling this, send current time in hours and minutes
 func _on_main_call_time_checker_notification():
@@ -26,11 +29,22 @@ func _on_line_edit_text_submitted(new_text):
 	var timeCheckerRes : TimeCheckerResource = TimeCheckerResource.new()
 	timeCheckerRes.HHMM = current_hour_minute
 	timeCheckerRes.text = new_text
-	
-	$Configuration.saveTimeCheckAsScene(timeCheckerRes)
+	saveTimeCheckAsScene(timeCheckerRes)
 	notification_is_being_used = false
 	ResetNotificationWindow()
 	hide()
+
+func saveTimeCheckAsScene(timeCheckerRes : TimeCheckerResource):
+	#can't save using ":" in the name.
+	var newCheckInfo := defaultCheckInfo.instantiate()
+	var reformatedHHMM := timeCheckerRes.HHMM.replace(":","-")
+	var checkDate := Time.get_date_string_from_system() + "_" + reformatedHHMM
+	var saveName := "Check_" + checkDate
+	newCheckInfo.find_child("DayAndHour").text = checkDate
+	newCheckInfo.find_child("CheckNote").text = timeCheckerRes.text
+	var scene = PackedScene.new()
+	scene.pack(newCheckInfo)
+	var err = ResourceSaver.save(scene, TIME_CHECKS_PATH + saveName + ".tscn", ResourceSaver.FLAG_NONE)
 
 func _on_button_pressed():
 	if notification_is_being_used:
