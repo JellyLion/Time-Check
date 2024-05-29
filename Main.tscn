@@ -238,6 +238,7 @@ script = ExtResource("10_5v3bx")
 [connection signal="minute_changed" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeAndDatePanel/CurrentTime" to="." method="_on_current_time_minute_changed"]
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/StartOnCurrentTime/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="on_saved_time_check" from="TimeCheckerNotification" to="VBoxContainer/HBoxContainer/MarginContainer/StorageSpace" method="_on_new_note_saved"]
 [connection signal="text_changed" from="TimeCheckerNotification/HBoxContainer/VBoxContainer/WhatAmIDoingNote/LineEdit" to="TimeCheckerNotification" method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="TimeCheckerNotification/HBoxContainer/VBoxContainer/WhatAmIDoingNote/LineEdit" to="TimeCheckerNotification" method="_on_line_edit_text_submitted"]
 

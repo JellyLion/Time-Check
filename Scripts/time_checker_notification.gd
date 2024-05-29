@@ -6,6 +6,8 @@ var current_hour_minute : String
 var current_text : String
 var defaultCheckInfo := preload("res://Assets/Scenes/CheckInfo.tscn")
 
+signal on_saved_time_check(String)
+
 const TIME_CHECKS_PATH := "user://TimeChecks/"
 
 #when calling this, send current time in hours and minutes
@@ -45,6 +47,7 @@ func saveTimeCheckAsScene(timeCheckerRes : TimeCheckerResource):
 	var scene = PackedScene.new()
 	scene.pack(newCheckInfo)
 	var err = ResourceSaver.save(scene, TIME_CHECKS_PATH + saveName + ".tscn", ResourceSaver.FLAG_NONE)
+	on_saved_time_check.emit(TIME_CHECKS_PATH + saveName + ".tscn")
 
 func _on_button_pressed():
 	if notification_is_being_used:
