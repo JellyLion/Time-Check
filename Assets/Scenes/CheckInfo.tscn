@@ -4,10 +4,10 @@
 bg_color = Color(0.180005, 0.180005, 0.180005, 1)
 
 [node name="CheckInfo" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 68)
 offset_right = 558.0
-offset_bottom = 65.0
+offset_bottom = 68.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_0slxt")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -27,12 +27,35 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="DayAndHour" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="DateHBox" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Control"]
+layout_mode = 0
+offset_right = 544.0
+offset_bottom = 33.0
+
+[node name="Date" type="Label" parent="HBoxContainer/VBoxContainer/Control/DateHBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.783523, 0.783523, 0.783523, 1)
+text = "Date: "
+
+[node name="DayAndHour" type="Label" parent="HBoxContainer/VBoxContainer/Control/DateHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.581033, 0.581033, 0.581033, 1)
 text = "date"
 
-[node name="CheckNote" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="NoteHBox" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/Control"]
+layout_mode = 0
+offset_top = 33.0
+offset_right = 544.0
+offset_bottom = 65.0
+
+[node name="Note" type="Label" parent="HBoxContainer/VBoxContainer/Control/NoteHBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.733333, 0.733333, 0.733333, 1)
+text = "Note: "
+
+[node name="CheckNote" type="Label" parent="HBoxContainer/VBoxContainer/Control/NoteHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.783523, 0.783523, 0.783523, 1)
 text = "Check note"
 
 [node name="Control2" type="Control" parent="HBoxContainer/VBoxContainer"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dw4fdjei1l7yc"]
 
-[ext_resource type="Script" path="res://Assets/Scenes/time_checker_notification.gd" id="1_bs4sx"]
+[ext_resource type="Script" path="res://Scripts/time_checker_notification.gd" id="1_meuwl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tn1b1"]
 font_size = 19
@@ -9,7 +9,7 @@ font_size = 19
 position = Vector2i(0, 36)
 size = Vector2i(250, 150)
 always_on_top = true
-script = ExtResource("1_bs4sx")
+script = ExtResource("1_meuwl")
 
 [node name="BackGround" type="Panel" parent="."]
 offset_right = 250.0
