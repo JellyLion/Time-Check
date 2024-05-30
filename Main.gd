@@ -5,10 +5,13 @@ var current_minute : int
 var start_at_current_time := false
 var minutes_past_starting_minute : int
 
+var currentSpace : Control
+@onready var allSpaces := $VBoxContainer/HBoxContainer/MarginContainer.get_children()
 signal call_time_checker_notification
 
 func _ready():
 	$Configuration.onApplicationStart()
+	currentSpace = allSpaces[0]
 
 func _on_current_time_minute_changed(minute):
 	current_minute = minute
@@ -34,3 +37,17 @@ func _on_check_button_toggled(toggled_on):
 	start_at_current_time = toggled_on
 	if toggled_on:
 		minutes_past_starting_minute = 0
+
+func _on_space_button_pressed(which):
+	if(which == "TimeChecker" and currentSpace != allSpaces[0]):
+		switchSpaces(allSpaces[0])
+	elif(which == "Storage" and currentSpace != allSpaces[1]):
+		switchSpaces(allSpaces[1])
+	else:
+		print_debug("Button not recognized")
+
+func switchSpaces(spaceToSwitchTo):
+	currentSpace.hide()
+	currentSpace = spaceToSwitchTo
+	currentSpace.show()
+
