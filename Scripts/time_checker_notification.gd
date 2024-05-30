@@ -19,6 +19,7 @@ func _on_main_call_time_checker_notification():
 	show()
 	await get_tree().create_timer(5.0).timeout
 	if not notification_is_being_used:
+		_on_line_edit_text_submitted(current_text)
 		hide()
 
 func _on_line_edit_text_changed(new_text):
