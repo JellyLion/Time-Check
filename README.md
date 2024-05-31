@@ -6,13 +6,13 @@ about what should you be doing at that time.
 I have used some assets (like icons and buttons) from mad-cookies-studio/mad-productivity.
 Although I'm using their design for referency, i'm writting my own code from scratch 
 (my app uses gdscript 2.0 so i had to change things anyway.)
-
-
-
-
-
-
-
+.
+.
+.
+.
+.
+.
+.
 THIS IS JUST THE MIT ATRIBUTTION FOR MAD-PRODUCTIVITY, MAD COOKIES PRODUCTIONS WHICH I HEAVILY REFERENCED AND LEARNED FROM, APP LICENCE REMAINS GPL 3.0
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
