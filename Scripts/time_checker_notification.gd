@@ -57,3 +57,17 @@ func _on_button_pressed():
 
 func ResetNotificationWindow():
 	$HBoxContainer/VBoxContainer/WhatAmIDoingNote/LineEdit.text = ""
+
+func _on_mouse_exited():
+	notification_is_being_used = false
+	print("mouse exited")
+	await get_tree().create_timer(5.0).timeout
+	if(not notification_is_being_used):
+		_on_line_edit_text_submitted(current_text)
+		hide()
+
+#func _on_window_input(event):
+	#with this event i can know if the mouse entered the window, better than mouse entered,
+	#which only seems to get called after exiting the window first.
+	#notification_is_being_used = true
+	#print(str(event))

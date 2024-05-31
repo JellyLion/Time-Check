@@ -97,4 +97,6 @@ text = "Submit"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="window_input" from="." to="." method="_on_window_input"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
