@@ -3,8 +3,9 @@ which tell you the current hour and day (maybe) and you can write a note about w
 doing at that time, so you can check it later. You can also specify a message in the notification
 about what should you be doing at that time.
 
-I have used some assets (like icons and buttons) from mad-cookies-studio/mad-productivity.
-Although I'm using their design for referency, i'm writting my own code from scratch 
+I have used an asset from mad-cookies-studio/mad-productivity.
+Although I'm using their design for reference, i'm writting my own code from scratch 
+but some functions are so basic that the code is just similar.
 (my app uses gdscript 2.0 so i had to change things anyway.)
 -
 -
