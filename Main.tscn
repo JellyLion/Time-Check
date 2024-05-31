@@ -260,6 +260,8 @@ borderless = true
 script = ExtResource("10_5v3bx")
 
 [connection signal="call_time_checker_notification" from="." to="TimeCheckerNotification" method="_on_main_call_time_checker_notification"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/TitlePanel" to="." method="_on_title_panel_gui_input"]
 [connection signal="pressed" from="VBoxContainer/TitlePanel/AppBarButtons/Minimize" to="VBoxContainer/TitlePanel/AppBarButtons" method="_on_minimize_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitlePanel/AppBarButtons/Maximize" to="VBoxContainer/TitlePanel/AppBarButtons" method="_on_maximize_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitlePanel/AppBarButtons/Close" to="VBoxContainer/TitlePanel/AppBarButtons" method="_on_close_pressed"]

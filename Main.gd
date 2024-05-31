@@ -1,5 +1,6 @@
 extends Control
 
+var drag_position = null
 var minutes_to_call_notification := 1
 var current_minute : int
 var start_at_current_time := false
@@ -51,4 +52,16 @@ func switchSpaces(spaceToSwitchTo):
 	currentSpace.hide()
 	currentSpace = spaceToSwitchTo
 	currentSpace.show()
+
+func _on_title_panel_gui_input(event):
+	if event is InputEventMouseButton:
+		var initial_mouse_position = Vector2i(get_global_mouse_position())
+		if event.pressed:
+			#start draggin
+			drag_position = Vector2i(get_global_mouse_position())
+		else:
+			#end draggin
+			drag_position = null
+	if event is InputEventMouseMotion and drag_position:
+		DisplayServer.window_set_position(DisplayServer.window_get_position() + Vector2i(event.global_position) - drag_position) 
 
