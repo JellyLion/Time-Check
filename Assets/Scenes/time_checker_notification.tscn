@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw4fdjei1l7yc"]
+[gd_scene load_steps=4 format=3 uid="uid://dw4fdjei1l7yc"]
 
 [ext_resource type="Script" path="res://Scripts/time_checker_notification.gd" id="1_meuwl"]
+[ext_resource type="AudioStream" uid="uid://c0mei60txpi5" path="res://Assets/Audio/notification2.wav" id="2_xm7lv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tn1b1"]
 font_size = 19
@@ -10,6 +11,9 @@ position = Vector2i(0, 36)
 size = Vector2i(250, 150)
 always_on_top = true
 script = ExtResource("1_meuwl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xm7lv")
 
 [node name="BackGround" type="Panel" parent="."]
 offset_right = 250.0

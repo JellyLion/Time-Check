@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 signal _on_view_button_pressed(which : String)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvgqg6s3y13c3"]
+[gd_scene load_steps=19 format=3 uid="uid://cvgqg6s3y13c3"]
 
 [ext_resource type="Texture2D" uid="uid://lbev18qh7qdj" path="res://Assets/Buttons/AppBar/MinimizeBtn.png" id="1_6ihf3"]
 [ext_resource type="Script" path="res://Main.gd" id="1_ka2lc"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/CurrentTime.gd" id="2_m1bxy"]
 [ext_resource type="Texture2D" uid="uid://c10kndmtmglbv" path="res://Assets/Buttons/AppBar/MaximizeBtn.png" id="2_mgum6"]
 [ext_resource type="Texture2D" uid="uid://dquglo7dwb3ov" path="res://Assets/Buttons/AppBar/ExitBtn.png" id="3_gybec"]
+[ext_resource type="Texture2D" uid="uid://e4ibfdycvax4" path="res://Assets/Buttons/TimeCheckerButton.png" id="6_h0alt"]
 [ext_resource type="Script" path="res://SpaceButton.gd" id="6_hlrqy"]
+[ext_resource type="Texture2D" uid="uid://btcoav0u7uatv" path="res://Assets/Buttons/StorageButton.png" id="7_bjghr"]
 [ext_resource type="Script" path="res://StorageSpace.gd" id="8_e4dsp"]
 [ext_resource type="Script" path="res://Scripts/Configuration.gd" id="10_5v3bx"]
 [ext_resource type="PackedScene" uid="uid://dw4fdjei1l7yc" path="res://Assets/Scenes/time_checker_notification.tscn" id="10_olkbf"]
@@ -19,8 +21,6 @@ bg_color = Color(0.111197, 0.111197, 0.111197, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_hnw34"]
 font_size = 25
 font_color = Color(0.817521, 0.817521, 0.817521, 1)
-
-[sub_resource type="ImageTexture" id="ImageTexture_s20uv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uk3a"]
 bg_color = Color(0.230315, 0.230315, 0.230315, 1)
@@ -112,35 +112,33 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.75
 theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="ButtonsPanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
-[node name="Buttons" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ButtonsPanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/Buttons"]
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="TimeCheckerSpaceButton" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/Buttons"]
+[node name="TimeCheckerButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons"]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-icon = SubResource("ImageTexture_s20uv")
+texture_normal = ExtResource("6_h0alt")
 script = ExtResource("6_hlrqy")
-which = "TimeChecker"
+which = "Time"
 
-[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer/PanelContainer/Buttons"]
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="StorageSpaceButton" type="Button" parent="VBoxContainer/HBoxContainer/PanelContainer/Buttons"]
+[node name="StorageButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons"]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-icon = SubResource("ImageTexture_s20uv")
+texture_normal = ExtResource("7_bjghr")
 script = ExtResource("6_hlrqy")
 which = "Storage"
 
@@ -196,9 +194,9 @@ size_flags_stretch_ratio = 0.25
 layout_mode = 2
 min_value = 1.0
 max_value = 60.0
-value = 1.0
+value = 10.0
 update_on_text_changed = true
-custom_arrow_step = 1.0
+custom_arrow_step = 5.0
 
 [node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification"]
 layout_mode = 2
@@ -265,10 +263,10 @@ script = ExtResource("10_5v3bx")
 [connection signal="pressed" from="VBoxContainer/TitlePanel/AppBarButtons/Minimize" to="VBoxContainer/TitlePanel/AppBarButtons" method="_on_minimize_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitlePanel/AppBarButtons/Maximize" to="VBoxContainer/TitlePanel/AppBarButtons" method="_on_maximize_pressed"]
 [connection signal="pressed" from="VBoxContainer/TitlePanel/AppBarButtons/Close" to="VBoxContainer/TitlePanel/AppBarButtons" method="_on_close_pressed"]
-[connection signal="_on_view_button_pressed" from="VBoxContainer/HBoxContainer/PanelContainer/Buttons/TimeCheckerSpaceButton" to="." method="_on_space_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/Buttons/TimeCheckerSpaceButton" to="VBoxContainer/HBoxContainer/PanelContainer/Buttons/TimeCheckerSpaceButton" method="_on_pressed"]
-[connection signal="_on_view_button_pressed" from="VBoxContainer/HBoxContainer/PanelContainer/Buttons/StorageSpaceButton" to="." method="_on_space_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/PanelContainer/Buttons/StorageSpaceButton" to="VBoxContainer/HBoxContainer/PanelContainer/Buttons/StorageSpaceButton" method="_on_pressed"]
+[connection signal="_on_view_button_pressed" from="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/TimeCheckerButton" to="." method="_on_space_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/TimeCheckerButton" to="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/TimeCheckerButton" method="_on_pressed"]
+[connection signal="_on_view_button_pressed" from="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/StorageButton" to="." method="_on_space_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/StorageButton" to="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/StorageButton" method="_on_pressed"]
 [connection signal="minute_changed" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeAndDatePanel/CurrentTime" to="." method="_on_current_time_minute_changed"]
 [connection signal="value_changed" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification/SpinBox" to="." method="_on_spin_box_value_changed"]
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/StartOnCurrentTime/CheckButton" to="." method="_on_check_button_toggled"]

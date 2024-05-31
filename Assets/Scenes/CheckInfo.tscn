@@ -62,3 +62,13 @@ text = "Check note"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="EditButton" type="Button" parent="HBoxContainer/VBoxContainer2"]
+visible = false
+layout_mode = 2
+text = "Edit"
