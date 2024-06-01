@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c2j5d2gifh32c"]
+
+[node name="settings_save" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="minutes_to_call_notification" type="Label" parent="."]
+layout_mode = 2
+text = "10
+"
+
+[node name="start_at_current_time" type="Label" parent="."]
+layout_mode = 2
+text = "0
+"

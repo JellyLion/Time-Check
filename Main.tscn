@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cvgqg6s3y13c3"]
+[gd_scene load_steps=20 format=3 uid="uid://cvgqg6s3y13c3"]
 
 [ext_resource type="Texture2D" uid="uid://lbev18qh7qdj" path="res://Assets/Buttons/AppBar/MinimizeBtn.png" id="1_6ihf3"]
 [ext_resource type="Script" path="res://Main.gd" id="1_ka2lc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://StorageSpace.gd" id="8_e4dsp"]
 [ext_resource type="Script" path="res://Scripts/Configuration.gd" id="10_5v3bx"]
 [ext_resource type="PackedScene" uid="uid://dw4fdjei1l7yc" path="res://Assets/Scenes/time_checker_notification.tscn" id="10_olkbf"]
+[ext_resource type="PackedScene" uid="uid://c2j5d2gifh32c" path="res://Assets/Scenes/default_settings_save.tscn" id="13_ns6e0"]
 
 [sub_resource type="Theme" id="Theme_vm6yq"]
 
@@ -170,27 +171,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_m1bxy")
 
-[node name="TimeToCallNotification" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace"]
+[node name="TimeToCallNotificationContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.84
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification"]
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotificationContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotificationContainer"]
 layout_mode = 2
 text = "Time to call checker notification:"
 label_settings = SubResource("LabelSettings_x7cr8")
 vertical_alignment = 1
 
-[node name="Control3" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification"]
+[node name="Control3" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotificationContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification"]
+[node name="TimeToCallNotification" type="SpinBox" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotificationContainer"]
 layout_mode = 2
 min_value = 1.0
 max_value = 60.0
@@ -198,7 +199,7 @@ value = 10.0
 update_on_text_changed = true
 custom_arrow_step = 5.0
 
-[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification"]
+[node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotificationContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 12.41
@@ -223,8 +224,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/StartOnCurrentTime"]
+[node name="StartOnCurrentTimeCheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/StartOnCurrentTime"]
 layout_mode = 2
+action_mode = 0
 
 [node name="Control2" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/StartOnCurrentTime"]
 layout_mode = 2
@@ -259,6 +261,9 @@ borderless = true
 [node name="Configuration" type="Node" parent="."]
 script = ExtResource("10_5v3bx")
 
+[node name="default_settings" parent="Configuration" instance=ExtResource("13_ns6e0")]
+visible = false
+
 [connection signal="call_time_checker_notification" from="." to="TimeCheckerNotification" method="_on_main_call_time_checker_notification"]
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="gui_input" from="VBoxContainer/TitlePanel" to="." method="_on_title_panel_gui_input"]
@@ -270,10 +275,13 @@ script = ExtResource("10_5v3bx")
 [connection signal="_on_view_button_pressed" from="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/StorageButton" to="." method="_on_space_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/StorageButton" to="VBoxContainer/HBoxContainer/ButtonsPanelContainer/Buttons/StorageButton" method="_on_pressed"]
 [connection signal="minute_changed" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeAndDatePanel/CurrentTime" to="." method="_on_current_time_minute_changed"]
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification/SpinBox" to="." method="_on_spin_box_value_changed"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/StartOnCurrentTime/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotificationContainer/TimeToCallNotification" to="." method="_on_time_to_call_notification_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotificationContainer/TimeToCallNotification" to="Configuration" method="_on_time_to_call_notification_value_changed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/StartOnCurrentTime/StartOnCurrentTimeCheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/StartOnCurrentTime/StartOnCurrentTimeCheckButton" to="Configuration" method="_on_start_on_current_time_check_button_toggled"]
 [connection signal="on_saved_time_check" from="TimeCheckerNotification" to="VBoxContainer/HBoxContainer/MarginContainer/StorageSpace" method="_on_new_note_saved"]
 [connection signal="text_changed" from="TimeCheckerNotification/HBoxContainer/VBoxContainer/WhatAmIDoingNote/LineEdit" to="TimeCheckerNotification" method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="TimeCheckerNotification/HBoxContainer/VBoxContainer/WhatAmIDoingNote/LineEdit" to="TimeCheckerNotification" method="_on_line_edit_text_submitted"]
 
 [editable path="TimeCheckerNotification"]
+[editable path="Configuration/default_settings"]

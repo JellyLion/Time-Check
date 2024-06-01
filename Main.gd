@@ -8,12 +8,13 @@ var minutes_past_starting_minute : int
 
 var currentSpace : Control
 @onready var allSpaces := $VBoxContainer/HBoxContainer/MarginContainer.get_children()
+@onready var timeToCallNotificationSpinBox = $VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotificationContainer/TimeToCallNotification
 signal call_time_checker_notification
 
 func _ready():
 	$Configuration.onApplicationStart()
 	currentSpace = allSpaces[0]
-	minutes_to_call_notification = $VBoxContainer/HBoxContainer/MarginContainer/DefaultSpace/TimeToCallNotification/SpinBox.value
+	minutes_to_call_notification = timeToCallNotificationSpinBox.value
 
 func _on_current_time_minute_changed(minute):
 	current_minute = minute
@@ -27,8 +28,8 @@ func _on_current_time_minute_changed(minute):
 		if minutes_past_starting_minute % minutes_to_call_notification == 0:
 			emit_signal(("call_time_checker_notification"))
 
-func _on_spin_box_value_changed(value):
-	print("spin box value changed " + str(value))
+func _on_time_to_call_notification_value_changed(value):
+	print("time to call notification value changed " + str(value))
 	minutes_to_call_notification = value
 	#also reset minutes past time notification.
 	minutes_past_starting_minute = 0
